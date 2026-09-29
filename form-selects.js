@@ -1,4 +1,4 @@
-// Use fixed choices in the roster editor. Only badge, name, and Discord ID are typed.
+// Use fixed choices in the roster editor. Badge, name, username, Discord ID, and points are typed.
 const rosterRankChoices=[
  'Minister of Interior','Deputy Minister of Interior','Advisor Minister of Interior',
  'LSPD Chief','LSPD Deputy Chief','High Commanders','General','Colonel','Major',
@@ -29,7 +29,7 @@ modalHtml=function(){
  if(modal!=='edit')return priorRosterModalHtml();
  const fields=Object.entries(rosterFieldLabels).map(([key,label])=>{
   const selected=String(form[key]??'');
-  if(['badge','name','discordId','points'].includes(key))
+  if(['badge','name','userName','discordId','points'].includes(key))
    return `<label>${label}<input id="field-${key}" value="${selected.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}" ${key==='points'?'type="number" min="0" step="1"':''}></label>`;
   const known=rosterSelectChoices[key]||[];
   // Preserve any saved value from an older record without letting another member's ID appear as a choice.
